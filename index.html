@@ -1,0 +1,284 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Our Cozy Morning ☕</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Tahoma, sans-serif;
+    background: #f3eee6;
+    color: #594638;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 650px;
+    padding: 40px 25px;
+    background: #fffaf3;
+    border-radius: 25px;
+    box-shadow: 0 8px 25px #b7a89555;
+}
+
+h1 {
+    color: #765b45;
+    font-size: 32px;
+}
+
+h2 {
+    color: #765b45;
+}
+
+p {
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+input {
+    padding: 14px;
+    width: 85%;
+    max-width: 350px;
+    border: 1px solid #c9b8a5;
+    border-radius: 12px;
+    font-size: 16px;
+    text-align: center;
+    margin: 15px 0;
+}
+
+button {
+    padding: 13px 30px;
+    background: #8c725a;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 8px;
+}
+
+button:hover {
+    background: #6d5542;
+}
+
+.hidden {
+    display: none;
+}
+
+.menu {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.food {
+    background: #f3eee6;
+    padding: 18px 10px;
+    border-radius: 15px;
+    border: 1px solid #e1d4c5;
+}
+
+.food label {
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.food input {
+    width: auto;
+    margin: 10px;
+    accent-color: #8c725a;
+}
+
+#selected {
+    margin-top: 25px;
+    background: #f3eee6;
+    padding: 18px;
+    border-radius: 15px;
+}
+
+@media (max-width: 450px) {
+    .menu {
+        grid-template-columns: 1fr;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <section id="welcome">
+
+        <h1>Our Cozy Morning ☕</h1>
+
+        <p>دفا الشتا يجمعنا ❄️</p>
+
+        <p>أهلًا في فطورنا الشتوي!</p>
+
+        <p>اكتبي اسمك لنبدأ صباحنا الجميل 🤎</p>
+
+        <input id="name" type="text" placeholder="اكتبي اسمك">
+
+        <br>
+
+        <button onclick="enter()">دخول ♡</button>
+
+    </section>
+
+
+    <section id="breakfast" class="hidden">
+
+        <h1>صباح الخير يا <span id="userName"></span> ☕</h1>
+
+        <p>خلينا نجهز سفرتنا الشتوية!</p>
+
+        <h2>ماذا ستحضرين معكِ؟</h2>
+
+        <div class="menu">
+
+            <div class="food">
+                <label>
+                    <input type="checkbox" value="بان كيك">
+                    🥞 بان كيك
+                </label>
+            </div>
+
+            <div class="food">
+                <label>
+                    <input type="checkbox" value="وافل">
+                    🧇 وافل
+                </label>
+            </div>
+
+            <div class="food">
+                <label>
+                    <input type="checkbox" value="كرواسون">
+                    🥐 كرواسون
+                </label>
+            </div>
+
+            <div class="food">
+                <label>
+                    <input type="checkbox" value="كيك">
+                    🍰 كيك
+                </label>
+            </div>
+
+            <div class="food">
+                <label>
+                    <input type="checkbox" value="سحلب">
+                    ☕ سحلب
+                </label>
+            </div>
+
+            <div class="food">
+                <label>
+                    <input type="checkbox" value="هوت شوكليت">
+                    🍫 هوت شوكليت
+                </label>
+            </div>
+
+            <div class="food">
+                <label>
+                    <input type="checkbox" value="قهوة">
+                    🤎 قهوة
+                </label>
+            </div>
+
+            <div class="food">
+                <label>
+                    <input type="checkbox" value="شاي">
+                    🫖 شاي
+                </label>
+            </div>
+
+        </div>
+
+        <br>
+
+        <button onclick="saveChoice()">تأكيد اختياراتي ♡</button>
+
+        <div id="selected" class="hidden"></div>
+
+    </section>
+
+</div>
+
+
+<script>
+
+function enter() {
+
+    let name = document.getElementById("name").value.trim();
+
+    if (name === "") {
+        alert("اكتبي اسمك أولًا ♡");
+        return;
+    }
+
+    document.getElementById("welcome").classList.add("hidden");
+
+    document.getElementById("breakfast").classList.remove("hidden");
+
+    document.getElementById("userName").innerText = name;
+
+}
+
+
+function saveChoice() {
+
+    let choices = document.querySelectorAll(
+        '.food input:checked'
+    );
+
+    let selected = [];
+
+    choices.forEach(function(item) {
+        selected.push(item.value);
+    });
+
+    let result = document.getElementById("selected");
+
+    result.classList.remove("hidden");
+
+    if (selected.length === 0) {
+
+        result.innerText = "لسه ما اخترتي أي شيء! اختاري من القائمة 🤎";
+
+    } else {
+
+        result.innerHTML =
+            "<h3>اختياراتك يا " +
+            document.getElementById("userName").innerText +
+            " 🤎</h3>" +
+            selected.join(" ❄️ ");
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
