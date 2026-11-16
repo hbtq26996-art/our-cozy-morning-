@@ -4,123 +4,117 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Our Cozy Morning ☕</title>
 
 <style>
-
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    min-height: 100vh;
-    font-family: Tahoma, sans-serif;
-    background: #f3eee6;
-    color: #594638;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px;
+  margin: 0;
+  font-family: Tahoma, Arial, sans-serif;
+  background: #f5eee5;
+  color: #594536;
+  text-align: center;
 }
 
 .container {
-    width: 100%;
-    max-width: 650px;
-    padding: 40px 25px;
-    background: #fffaf3;
-    border-radius: 25px;
-    box-shadow: 0 8px 25px #b7a89555;
+  width: 90%;
+  max-width: 600px;
+  margin: 35px auto;
+  padding: 25px;
+  background: #fffaf4;
+  border-radius: 22px;
+  box-shadow: 0 5px 20px #8c71501a;
 }
 
 h1 {
-    color: #765b45;
-    font-size: 32px;
+  color: #76563f;
+  font-size: 30px;
+}
+
+.subtitle {
+  color: #a18b77;
+  margin-bottom: 25px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #dfcdbb;
+  border-radius: 12px;
+  font-size: 16px;
+  margin: 12px 0;
+  background: white;
 }
 
 h2 {
-    color: #765b45;
+  color: #87664c;
+  font-size: 20px;
+  margin-top: 25px;
 }
 
-p {
-    font-size: 17px;
-    line-height: 1.8;
+.options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  text-align: right;
 }
 
-input {
-    padding: 14px;
-    width: 85%;
-    max-width: 350px;
-    border: 1px solid #c9b8a5;
-    border-radius: 12px;
-    font-size: 16px;
-    text-align: center;
-    margin: 15px 0;
+.option {
+  background: #f5eee5;
+  padding: 13px;
+  border-radius: 12px;
+}
+
+.option input {
+  accent-color: #98765a;
+  margin-left: 6px;
 }
 
 button {
-    padding: 13px 30px;
-    background: #8c725a;
-    color: white;
-    border: none;
-    border-radius: 12px;
-    font-size: 16px;
-    cursor: pointer;
-    margin: 8px;
+  width: 100%;
+  border: none;
+  padding: 14px;
+  margin-top: 22px;
+  border-radius: 12px;
+  background: #89694e;
+  color: white;
+  font-size: 17px;
+  cursor: pointer;
 }
 
-button:hover {
-    background: #6d5542;
+button:disabled {
+  opacity: 0.6;
+}
+
+.message {
+  margin-top: 15px;
+  color: #76563f;
+}
+
+.participant {
+  background: #f5eee5;
+  border-radius: 14px;
+  padding: 15px;
+  margin: 12px 0;
+  text-align: right;
+}
+
+.participant strong {
+  color: #76563f;
+  font-size: 17px;
+}
+
+.participant p {
+  margin-bottom: 0;
+  line-height: 1.8;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
-
-.menu {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin-top: 25px;
-}
-
-.food {
-    background: #f3eee6;
-    padding: 18px 10px;
-    border-radius: 15px;
-    border: 1px solid #e1d4c5;
-}
-
-.food label {
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.food input {
-    width: auto;
-    margin: 10px;
-    accent-color: #8c725a;
-}
-
-#selected {
-    margin-top: 25px;
-    background: #f3eee6;
-    padding: 18px;
-    border-radius: 15px;
-}
-
-@media (max-width: 450px) {
-    .menu {
-        grid-template-columns: 1fr;
-    }
-
-    h1 {
-        font-size: 26px;
-    }
-}
-
 </style>
 </head>
 
@@ -128,155 +122,199 @@ button:hover {
 
 <div class="container">
 
-    <section id="welcome">
+  <h1>Our Cozy Morning ☕</h1>
+  <p class="subtitle">دفا الشتاء أحلى لما نكون مع بعض ❄️</p>
 
-        <h1>Our Cozy Morning ☕</h1>
+  <div id="entry">
+    <h2>أهلًا في فطورنا الشتوي 🤎</h2>
+    <p>اكتبي اسمك واختاري شو رح تجيبي معنا!</p>
+    <input type="text" id="name" placeholder="اكتبي اسمك هنا">
+    <button id="enterBtn">يلا نبدأ ☕</button>
+  </div>
 
-        <p>دفا الشتا يجمعنا ❄️</p>
+  <div id="menu" class="hidden">
 
-        <p>أهلًا في فطورنا الشتوي!</p>
+    <h2>🥞 الأكلات</h2>
+    <div class="options">
+      <label class="option"><input type="checkbox" value="بان كيك"> بان كيك 🥞</label>
+      <label class="option"><input type="checkbox" value="وافل"> وافل 🧇</label>
+      <label class="option"><input type="checkbox" value="كرواسون"> كرواسون 🥐</label>
+      <label class="option"><input type="checkbox" value="كيك"> كيك 🍰</label>
+      <label class="option"><input type="checkbox" value="كوكيز"> كوكيز 🍪</label>
+      <label class="option"><input type="checkbox" value="معجنات"> معجنات 🥨</label>
+      <label class="option"><input type="checkbox" value="فواكه"> فواكه 🍓</label>
+      <label class="option"><input type="checkbox" value="سندويشات"> سندويشات 🥪</label>
+    </div>
 
-        <p>اكتبي اسمك لنبدأ صباحنا الجميل 🤎</p>
+    <h2>☕ المشروبات</h2>
+    <div class="options">
+      <label class="option"><input type="checkbox" value="هوت تشوكليت"> هوت تشوكليت 🍫</label>
+      <label class="option"><input type="checkbox" value="سحلب"> سحلب 🤍</label>
+      <label class="option"><input type="checkbox" value="قهوة"> قهوة ☕</label>
+      <label class="option"><input type="checkbox" value="شاي"> شاي 🫖</label>
+      <label class="option"><input type="checkbox" value="عصير"> عصير 🧃</label>
+    </div>
 
-        <input id="name" type="text" placeholder="اكتبي اسمك">
+    <h2>✨ إضافات</h2>
+    <div class="options">
+      <label class="option"><input type="checkbox" value="شوكولاتة"> شوكولاتة 🍫</label>
+      <label class="option"><input type="checkbox" value="مارشميلو"> مارشميلو ☁️</label>
+      <label class="option"><input type="checkbox" value="أكواب ومناديل"> أكواب ومناديل</label>
+    </div>
 
-        <br>
+    <button id="saveBtn">تأكيد اختياراتي 🤎</button>
+    <p id="message" class="message"></p>
+  </div>
 
-        <button onclick="enter()">دخول ♡</button>
-
-    </section>
-
-
-    <section id="breakfast" class="hidden">
-
-        <h1>صباح الخير يا <span id="userName"></span> ☕</h1>
-
-        <p>خلينا نجهز سفرتنا الشتوية!</p>
-
-        <h2>ماذا ستحضرين معكِ؟</h2>
-
-        <div class="menu">
-
-            <div class="food">
-                <label>
-                    <input type="checkbox" value="بان كيك">
-                    🥞 بان كيك
-                </label>
-            </div>
-
-            <div class="food">
-                <label>
-                    <input type="checkbox" value="وافل">
-                    🧇 وافل
-                </label>
-            </div>
-
-            <div class="food">
-                <label>
-                    <input type="checkbox" value="كرواسون">
-                    🥐 كرواسون
-                </label>
-            </div>
-
-            <div class="food">
-                <label>
-                    <input type="checkbox" value="كيك">
-                    🍰 كيك
-                </label>
-            </div>
-
-            <div class="food">
-                <label>
-                    <input type="checkbox" value="سحلب">
-                    ☕ سحلب
-                </label>
-            </div>
-
-            <div class="food">
-                <label>
-                    <input type="checkbox" value="هوت شوكليت">
-                    🍫 هوت شوكليت
-                </label>
-            </div>
-
-            <div class="food">
-                <label>
-                    <input type="checkbox" value="قهوة">
-                    🤎 قهوة
-                </label>
-            </div>
-
-            <div class="food">
-                <label>
-                    <input type="checkbox" value="شاي">
-                    🫖 شاي
-                </label>
-            </div>
-
-        </div>
-
-        <br>
-
-        <button onclick="saveChoice()">تأكيد اختياراتي ♡</button>
-
-        <div id="selected" class="hidden"></div>
-
-    </section>
+  <h2>🎀 سفرتنا الشتوية</h2>
+  <div id="participants">جاري تحميل المشاركات...</div>
 
 </div>
 
+<script type="module">
 
-<script>
+import { initializeApp } from
+"https://www.gstatic.com/firebasejs/13.3.0/firebase-app.js";
 
-function enter() {
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  serverTimestamp,
+  onSnapshot,
+  query,
+  orderBy
+} from
+"https://www.gstatic.com/firebasejs/13.3.0/firebase-firestore.js";
 
-    let name = document.getElementById("name").value.trim();
+import {
+  getAuth,
+  signInAnonymously
+} from
+"https://www.gstatic.com/firebasejs/13.3.0/firebase-auth.js";
 
-    if (name === "") {
-        alert("اكتبي اسمك أولًا ♡");
-        return;
-    }
+const firebaseConfig = {
+  apiKey: "AIzaSyDLbupsuA1tmJV1aqzmyPCS7wWzSueyTck",
+  authDomain: "our-cozy-morning.firebaseapp.com",
+  projectId: "our-cozy-morning",
+  storageBucket: "our-cozy-morning.firebasestorage.app",
+  messagingSenderId: "693198483832",
+  appId: "1:693198483832:web:24fe3a29ec7352b337988d",
+  measurementId: "G-35SYQBZY90"
+};
 
-    document.getElementById("welcome").classList.add("hidden");
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
 
-    document.getElementById("breakfast").classList.remove("hidden");
+const nameInput = document.getElementById("name");
+const entry = document.getElementById("entry");
+const menu = document.getElementById("menu");
+const enterBtn = document.getElementById("enterBtn");
+const saveBtn = document.getElementById("saveBtn");
+const message = document.getElementById("message");
+const participants = document.getElementById("participants");
 
-    document.getElementById("userName").innerText = name;
+let currentName = "";
 
-}
+signInAnonymously(auth)
+  .catch((error) => {
+    console.error(error);
+    participants.textContent =
+      "تعذر الاتصال. تأكدي من إعدادات Firebase.";
+  });
 
+enterBtn.addEventListener("click", () => {
+  const name = nameInput.value.trim();
 
-function saveChoice() {
+  if (!name) {
+    alert("اكتبي اسمك أولًا 🤎");
+    return;
+  }
 
-    let choices = document.querySelectorAll(
-        '.food input:checked'
-    );
+  currentName = name;
+  entry.classList.add("hidden");
+  menu.classList.remove("hidden");
+});
 
-    let selected = [];
+saveBtn.addEventListener("click", async () => {
 
-    choices.forEach(function(item) {
-        selected.push(item.value);
+  if (!auth.currentUser) {
+    message.textContent = "لحظة، جاري الاتصال...";
+    return;
+  }
+
+  const choices = Array.from(
+    document.querySelectorAll(
+      '#menu input[type="checkbox"]:checked'
+    )
+  ).map((item) => item.value);
+
+  if (choices.length === 0) {
+    message.textContent = "اختاري شيئًا واحدًا على الأقل 🤎";
+    return;
+  }
+
+  saveBtn.disabled = true;
+  message.textContent = "جاري حفظ اختياراتك...";
+
+  try {
+    await addDoc(collection(db, "breakfast"), {
+      name: currentName,
+      choices: choices,
+      createdAt: serverTimestamp()
     });
 
-    let result = document.getElementById("selected");
+    message.textContent = "تم حفظ اختياراتك بنجاح! 🤎";
+    document.querySelectorAll(
+      '#menu input[type="checkbox"]'
+    ).forEach((item) => item.checked = false);
 
-    result.classList.remove("hidden");
+  } catch (error) {
+    console.error(error);
+    message.textContent =
+      "ما قدرنا نحفظ الاختيارات. تأكدي من إعدادات Firebase.";
+  }
 
-    if (selected.length === 0) {
+  saveBtn.disabled = false;
+});
 
-        result.innerText = "لسه ما اخترتي أي شيء! اختاري من القائمة 🤎";
+const q = query(
+  collection(db, "breakfast"),
+  orderBy("createdAt", "desc")
+);
 
-    } else {
+onSnapshot(q, (snapshot) => {
 
-        result.innerHTML =
-            "<h3>اختياراتك يا " +
-            document.getElementById("userName").innerText +
-            " 🤎</h3>" +
-            selected.join(" ❄️ ");
+  participants.innerHTML = "";
 
-    }
+  if (snapshot.empty) {
+    participants.textContent = "لسه ما حدا شارك، كوني أول وحدة! ☕";
+    return;
+  }
 
-}
+  snapshot.forEach((doc) => {
+    const data = doc.data();
+
+    const card = document.createElement("div");
+    card.className = "participant";
+
+    const name = document.createElement("strong");
+    name.textContent = data.name;
+
+    const choices = document.createElement("p");
+    choices.textContent = (data.choices || []).join(" · ");
+
+    card.appendChild(name);
+    card.appendChild(choices);
+    participants.appendChild(card);
+  });
+
+}, (error) => {
+  console.error(error);
+  participants.textContent =
+    "تعذر تحميل المشاركات. راجعي إعدادات قاعدة البيانات.";
+});
 
 </script>
 
